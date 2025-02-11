@@ -31,7 +31,7 @@ public class Ability3Frozen : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            ChasePlayer npcScript = hit.transform.gameObject.GetComponent<ChasePlayer>(); //can get other scripts if needed
+            StatusEffectHandler npcScript = hit.transform.gameObject.GetComponent<StatusEffectHandler>(); //can get other scripts if needed
             Debug.Log(hit.transform.name);
             if (!npcScript) return;
             npcScript.ApplyStatusEffect(StatusEffect.premadeStatusEffects["frozen"]);

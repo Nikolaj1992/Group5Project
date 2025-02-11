@@ -7,16 +7,16 @@ public class UIDummyStats : MonoBehaviour
 {
     public TextMeshProUGUI uiText;
     public GameObject dummy;
-    private ChasePlayer script;
+    private StatusEffectHandler script;
 
     private void Start()
     {
-        script = dummy.GetComponent<ChasePlayer>();
+        script = dummy.GetComponent<StatusEffectHandler>();
     }
 
     void FixedUpdate()
     {
-        if (script.StatusEffects.ContainsKey("frozen"))
+        if (script.StatusEffects.ContainsKey("frozen") && script.StatusEffects["frozen"].isActive)
         {
             uiText.text = "Debuff: " + "frozen" + "\n" + "Speed: " + script.speed + "\n" + "Debuffed: " + script.StatusEffects["frozen"].isActive + "\n" + "Time: " + script.StatusEffects["frozen"].duration;
         }
