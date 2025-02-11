@@ -33,11 +33,8 @@ public class Ability3Frozen : MonoBehaviour
         {
             ChasePlayer npcScript = hit.transform.gameObject.GetComponent<ChasePlayer>(); //can get other scripts if needed
             Debug.Log(hit.transform.name);
-            // Debug.Log(hit.point);
             if (!npcScript) return;
-            // npcScript.ApplyFrozenDebuff(true, 5);
-            // npcScript.ApplyDebuff("frozen", 5f, false, true, 0.7f);
-            npcScript.ApplyDebuff(Debuff.premadeDebuffs["frozen"]);
+            npcScript.ApplyStatusEffect(StatusEffect.premadeStatusEffects["frozen"]);
 
         }
         player.layer = originalLayer;

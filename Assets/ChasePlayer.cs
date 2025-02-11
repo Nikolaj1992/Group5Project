@@ -8,9 +8,7 @@ public class ChasePlayer : MonoBehaviour
     private NavMeshAgent agent;
     [SerializeField] private float baseSpeed;
     [HideInInspector] public float speed;
-    [HideInInspector] public bool debuffed;
-    [HideInInspector] public float debuffTimer;
-    [HideInInspector] public Dictionary<string, Debuff> debuffs = new Dictionary<string, Debuff>();
+    [HideInInspector] public Dictionary<string, StatusEffect> StatusEffects = new Dictionary<string, StatusEffect>();
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
@@ -20,33 +18,33 @@ public class ChasePlayer : MonoBehaviour
     
     void Update()
     {
-        List<string> keys = new List<string>(debuffs.Keys); // To avoid modifying dictionary while iterating
+        List<string> keys = new List<string>(StatusEffects.Keys); // To avoid modifying dictionary while iterating
         
         bool speedModified = false;
         float speedModifier = 1f; // Default multiplier
 
         foreach (string key in keys)
         {
-            Debuff debuff = debuffs[key];
+            StatusEffect statusEffect = StatusEffects[key];
 
-            if (debuff.isActive)
+            if (statusEffect.isActive)
             {
-                debuff.duration -= Time.deltaTime;
+                statusEffect.duration -= Time.deltaTime;
 
-                if (debuff.duration <= 0)
+                if (statusEffect.duration <= 0)
                 {
-                    RemoveDebuff(key);
+                    RemoveStatusEffect(key);
                 }
                 else
                 {
-                    debuffs[key] = debuff; // Update the dictionary with the reduced timer
+                    StatusEffects[key] = statusEffect; // Update the dictionary with the reduced timer
                 }
 
                 // If the debuff affects speed, apply it
-                if (debuff.affectsSpeed)
+                if (statusEffect.affectsSpeed)
                 {
                     speedModified = true;
-                    speedModifier *= debuff.speedMultiplier;
+                    speedModifier *= statusEffect.speedMultiplier;
                 }
             }
         }
@@ -66,59 +64,48 @@ public class ChasePlayer : MonoBehaviour
         }
     }
 
-    public void ApplyDebuff(Debuff debuff)
+    public void ApplyStatusEffect(StatusEffect statusEffect)
     {
-        ApplyDebuff(debuff.name, debuff.duration, debuff.stackable, debuff.affectsSpeed, debuff.speedMultiplier);
+        ApplyStatusEffect(statusEffect.name, statusEffect.duration, statusEffect.stackable, statusEffect.affectsSpeed, statusEffect.speedMultiplier, statusEffect.dealsDamage, statusEffect.damageOverTime, statusEffect.damage, statusEffect.confuses, statusEffect.confusionType);
     }
     
-    public void ApplyDebuff(string debuffName, float duration, bool stackable, bool affectsSpeed = false, float speedMultiplier = 1f)
+    public void ApplyStatusEffect(string statusEffectName, float duration, bool stackable, bool affectsSpeed = false, float speedMultiplier = 1f, bool dealsDamage = false, bool damageOverTime = false, float damage = 0, bool confuses = false, float confusionType = 0)
     {
-        if (debuffs.ContainsKey(debuffName))
+        if (StatusEffects.ContainsKey(statusEffectName))
         {
             // If the debuff is already active, refresh its timer instead of stacking it
-            Debuff existingDebuff = debuffs[debuffName];
-            if (existingDebuff.stackable)
+            StatusEffect existingStatusEffect = StatusEffects[statusEffectName];
+            if (existingStatusEffect.stackable)
             {
-            existingDebuff.duration = Mathf.Max(existingDebuff.duration, duration); // Keep the longest duration
-            debuffs[debuffName] = existingDebuff; // Update the dictionary
-            Debug.Log($"{debuffName} refreshed with {existingDebuff.duration} seconds remaining.");
+            existingStatusEffect.duration = Mathf.Max(existingStatusEffect.duration, duration); // Keep the longest duration
+            StatusEffects[statusEffectName] = existingStatusEffect; // Update the dictionary
+            Debug.Log($"{statusEffectName} refreshed with {existingStatusEffect.duration} seconds remaining.");
             }
-            if (existingDebuff.duration == 0)
+            if (existingStatusEffect.duration == 0)
             {
-                debuffs[debuffName] = new Debuff(true, duration, stackable, affectsSpeed, speedMultiplier);
-                Debug.Log($"Applied {debuffName} for {duration} seconds. (already existed)");
+                StatusEffects[statusEffectName] = new StatusEffect(true, duration, stackable, affectsSpeed, speedMultiplier);
+                Debug.Log($"Applied {statusEffectName} for {duration} seconds. (already existed)");
+            }
+            else
+            {
+                Debug.Log($"Status effect {statusEffectName} is already applied, and is not stackable.");
             }
         }
         else
         {
             // Otherwise, add a new debuff
-            debuffs[debuffName] = new Debuff(true, duration, stackable, affectsSpeed, speedMultiplier);
-            Debug.Log($"Applied {debuffName} for {duration} seconds.");
+            StatusEffects[statusEffectName] = new StatusEffect(true, duration, stackable, affectsSpeed, speedMultiplier);
+            Debug.Log($"Applied {statusEffectName} for {duration} seconds.");
         }
     }
 
-    private void RemoveDebuff(string debuffName)
+    private void RemoveStatusEffect(string statusEffectName)
     {
-        if (debuffs.ContainsKey(debuffName))
+        if (StatusEffects.ContainsKey(statusEffectName))
         {
-            debuffs[debuffName] = new Debuff(false, 0, false, false, 1f);
-            Debug.Log($"{debuffName} has expired.");
+            StatusEffects[statusEffectName] = new StatusEffect(false, 0, false, false, 1f);
+            Debug.Log($"{statusEffectName} has expired.");
         }
     }
 
-    // public void ApplyFrozenDebuff(bool activate, float duration)
-    // {
-    //     if (activate && !debuffed)
-    //     {
-    //         debuffed = true;
-    //         speed *= 0.7f;
-    //         debuffTimer = duration;
-    //     }
-    //     if (!activate && debuffed)
-    //     {
-    //         debuffed = false;
-    //         speed = baseSpeed;
-    //         debuffTimer = 0f;
-    //     }
-    // }
 }

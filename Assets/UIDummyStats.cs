@@ -16,13 +16,13 @@ public class UIDummyStats : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (script.debuffs.ContainsKey("frozen"))
+        if (script.StatusEffects.ContainsKey("frozen"))
         {
-            uiText.text = "Speed: " + script.speed + "\n" + "Debuff: " + script.debuffs["frozen"].isActive + "\n" + "Time: " + script.debuffs["frozen"].duration;
+            uiText.text = "Debuff: " + "frozen" + "\n" + "Speed: " + script.speed + "\n" + "Debuffed: " + script.StatusEffects["frozen"].isActive + "\n" + "Time: " + script.StatusEffects["frozen"].duration;
         }
         else
         {
-            uiText.text = "Speed: " + script.speed + "\n" + "Debuff: " + false + "\n" + "Time: " + 0;
+            uiText.text = "Debuff: " + "none" + "\n" + "Speed: " + script.speed + "\n" + "Debuffed: " + false + "\n" + "Time: " + 0;
         }
     }
 }
