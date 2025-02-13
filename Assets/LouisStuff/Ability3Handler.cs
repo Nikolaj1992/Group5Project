@@ -23,7 +23,7 @@ public class Ability3Handler : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R))
         { 
-            Ability3Attack("aflame", 90, HealthHandler.DamageType.Elemental);
+            Ability3Attack("aflame", 30, HealthHandler.DamageType.Elemental);
         }
         
     }

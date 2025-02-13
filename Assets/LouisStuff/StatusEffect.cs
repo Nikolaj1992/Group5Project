@@ -19,14 +19,15 @@ public struct StatusEffect
     public bool confuses;
     public float confusionType; // 1 = input scramble, 2 = messes with gui, 3 = disables gui
     
-    
-    public static Dictionary<string, StatusEffect> premadeStatusEffects = new Dictionary<string, StatusEffect>();
+    // map with premade status effects
+    public static Dictionary<string, StatusEffect> premadeStatusEffects;
 
     static StatusEffect()
     {
         premadeStatusEffects["frozen"] = new StatusEffect("frozen", true, 5, false, true, 0.7f);
         premadeStatusEffects["aflame"] = new StatusEffect("aflame", true, 6, true, false, 1f, true, HealthHandler.DamageType.Elemental, true, 4);
     }
+    
     public StatusEffect(string name, bool isActive, float duration, bool stackable, bool affectsSpeed = false, float speedMultiplier = 1f, bool dealsDamage = false, HealthHandler.DamageType damageType = HealthHandler.DamageType.Impact,bool damageOverTime = false, float damage = 0, bool confuses = false, float confusionType = 0)
     {
         this.name = name;
@@ -42,20 +43,4 @@ public struct StatusEffect
         this.confuses = confuses;
         this.confusionType = confusionType;
     }
-    
-    // public StatusEffect(bool isActive, float duration, bool stackable, bool affectsSpeed = false, float speedMultiplier = 1f, bool dealsDamage = false, bool damageOverTime = false, float damage = 0, bool confuses = false, float confusionType = 0)
-    // {
-    //     this.name = string.Empty;
-    //     this.isActive = isActive;
-    //     this.duration = duration;
-    //     this.stackable = stackable;
-    //     this.affectsSpeed = affectsSpeed;
-    //     this.speedMultiplier = speedMultiplier;
-    //     this.dealsDamage = dealsDamage;
-    //     this.damageOverTime = damageOverTime;
-    //     this.damage = damage;
-    //     this.confuses = confuses;
-    //     this.confusionType = confusionType;
-    // }
-
 }
