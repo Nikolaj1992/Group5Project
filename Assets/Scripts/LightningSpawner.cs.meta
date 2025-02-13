@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 52c5e7c07f35a9c429a8c9ecdac951a8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - thunderStrikePrefab: {fileID: 8690049599401577628, guid: 24ec2fb0e8c631943a03fb768ae7b810, type: 3}
+  - playerCamera: {fileID: 5066056848955781665, guid: b7eae9b5810504a4490b902372d94613, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
