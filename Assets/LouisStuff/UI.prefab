@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiText: {fileID: 6261789461784989074}
-  dummy: {fileID: 0}
+  dummy: {fileID: 3431766122352944186, guid: c4892402351006049bfbb23760c01bb6, type: 3}
 --- !u!1 &4144229262288921342
 GameObject:
   m_ObjectHideFlags: 0
