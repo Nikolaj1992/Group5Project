@@ -9,7 +9,7 @@ public struct StatusEffect
     public bool stackable;
     // speed boost/debuff fields
     public bool affectsSpeed;
-    public float speedMultiplier;
+    public float speedMultiplier; // set to 1f if you don't want a speed multiplier
     // damage debuff fields
     public bool dealsDamage;
     public bool damageOverTime;
