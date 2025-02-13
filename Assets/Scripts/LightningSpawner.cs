@@ -32,6 +32,12 @@ public class LightningSpawner : MonoBehaviour
             // Instantiate the lightning
             Instantiate(thunderStrikePrefab, lightningPosition, Quaternion.identity);
         }
+        
+        ThunderStrikeEffect strikeScript = thunderStrikePrefab.GetComponent<ThunderStrikeEffect>();
+        if (strikeScript != null)
+        {
+            strikeScript.StartStrike();
+        }
 
         player.layer = originalLayer;
     }

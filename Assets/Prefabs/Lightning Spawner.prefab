@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7950873425794169961}
   - component: {fileID: 8044606963183983076}
+  - component: {fileID: 2920911871959680138}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: Lightning Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,3 +47,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thunderStrikePrefab: {fileID: 8690049599401577628, guid: 24ec2fb0e8c631943a03fb768ae7b810, type: 3}
   playerCamera: {fileID: 5066056848955781665, guid: b7eae9b5810504a4490b902372d94613, type: 3}
+--- !u!114 &2920911871959680138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8743748678220409232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1b47b9357d05841a07fd326bda1bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightningSpawner: {fileID: 8044606963183983076}
