@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Ability3Frozen : MonoBehaviour
+public class Ability3Handler : MonoBehaviour
 {
     private Camera m_Camera;
     private GameObject player;
@@ -19,11 +19,16 @@ public class Ability3Frozen : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         { 
-            FrozenDebuffAttack();
+            Ability3Attack("frozen", 20, HealthHandler.DamageType.Elemental);
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        { 
+            Ability3Attack("aflame", 30, HealthHandler.DamageType.Elemental);
+        }
+        
     }
-    
-    void FrozenDebuffAttack()
+
+    void Ability3Attack(string statusEffectName, float damage, HealthHandler.DamageType damageType)
     {
         player.layer = ignoreRaycastLayer;
         Ray ray = m_Camera.ScreenPointToRay(Input.mousePosition);
@@ -31,13 +36,15 @@ public class Ability3Frozen : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
+            HealthHandler npcHealth = hit.transform.gameObject.GetComponent<HealthHandler>();
             StatusEffectHandler npcScript = hit.transform.gameObject.GetComponent<StatusEffectHandler>(); //can get other scripts if needed
             Debug.Log(hit.transform.name);
+            if (!npcHealth) return;
             if (!npcScript) return;
-            npcScript.ApplyStatusEffect(StatusEffect.premadeStatusEffects["frozen"]);
-
+            if (statusEffectName != "" && !StatusEffect.premadeStatusEffects.ContainsKey(statusEffectName)) return;
+            npcHealth.dealDamage(damage, damageType);
+            npcScript.ApplyStatusEffect(StatusEffect.premadeStatusEffects[statusEffectName]);
         }
         player.layer = originalLayer;
     }
-    
 }
