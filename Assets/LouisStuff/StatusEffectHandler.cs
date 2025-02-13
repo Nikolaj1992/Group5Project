@@ -76,7 +76,7 @@ public class StatusEffectHandler : MonoBehaviour
                 {
                     if (damageOverTime)
                     {
-                        healthHandler.dealDamageOverTime(damage, damageType, duration);
+                        healthHandler.DealDamageOverTime(damage, damageType, duration);
                     }
                 }
                 Debug.Log($"Applied {statusEffectName} for {duration} seconds. (already existed)");
@@ -94,7 +94,7 @@ public class StatusEffectHandler : MonoBehaviour
             {
                 if (damageOverTime)
                 {
-                    healthHandler.dealDamageOverTime(damage, damageType, duration);
+                    healthHandler.DealDamageOverTime(damage, damageType, duration);
                 }
             }
             Debug.Log($"Applied {statusEffectName} for {duration} seconds.");

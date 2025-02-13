@@ -23,7 +23,7 @@ public class Ability3Handler : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R))
         { 
-            Ability3Attack("aflame", 30, HealthHandler.DamageType.Elemental);
+            Ability3Attack("aflame", 90, HealthHandler.DamageType.Elemental);
         }
         
     }
@@ -42,7 +42,7 @@ public class Ability3Handler : MonoBehaviour
             if (!npcHealth) return;
             if (!npcScript) return;
             if (statusEffectName != "" && !StatusEffect.premadeStatusEffects.ContainsKey(statusEffectName)) return;
-            npcHealth.dealDamage(damage, damageType);
+            npcHealth.DealDamage(damage, damageType);
             npcScript.ApplyStatusEffect(StatusEffect.premadeStatusEffects[statusEffectName]);
         }
         player.layer = originalLayer;

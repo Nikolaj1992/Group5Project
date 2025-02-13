@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class HealthHandler : MonoBehaviour
@@ -27,7 +27,7 @@ public class HealthHandler : MonoBehaviour
         }
     }
 
-    public void dealDamage(float damage, DamageType damageType)
+    public void DealDamage(float damage, DamageType damageType)
     {
         if (!alive)
         {
@@ -52,17 +52,18 @@ public class HealthHandler : MonoBehaviour
         Debug.Log(gameObject.name + " took " + damageToDeal + " damage");
     }
 
-    public void dealDamageOverTime(float damage, DamageType damageType, float duration)
+    public void DealDamageOverTime(float damage, DamageType damageType, float duration)
     {
         StartCoroutine(DOT(damage, damageType, duration));
     }
-    
-    private IEnumerator<WaitForSeconds> DOT(float damage, DamageType damageType, float duration)
+
+    private IEnumerator DOT(float damage, DamageType type, float duration)
     {
         for (int i = 0; i < duration; i++)
         {
-            dealDamage(damage, damageType);
-            yield return new WaitForSeconds(1);
+            if (!alive) yield break;
+            DealDamage(damage, type);
+            yield return new WaitForSeconds(1f);
         }
     }
 }
