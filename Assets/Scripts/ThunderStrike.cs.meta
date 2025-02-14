@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: ac1b47b9357d05841a07fd326bda1bb4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - lightningSpawner: {fileID: 8044606963183983076, guid: 38678268a94c19043a7f1c6413acf20d, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
