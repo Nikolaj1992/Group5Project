@@ -109,7 +109,7 @@ public class EnemyBehavior : MonoBehaviour
     
     private void Attacking()
     {
-        agent.SetDestination(transform.position);
+        // agent.SetDestination(transform.position);    // Stop moving when attacking. Enemy stands still.
         
         transform.LookAt(player);
         
@@ -138,12 +138,28 @@ public class EnemyBehavior : MonoBehaviour
             
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            MoveDuringCooldown();
         }
     }
     
     private void ResetAttack()
     {
         alreadyAttacked = false;
+    }
+
+    // Move the enemy during cooldown - set in timeBetweenAttacks in Unity for specific enemy
+    private void MoveDuringCooldown()
+    {
+        // Move randomly while waiting for the next attack
+        Vector3 randomMovement = new Vector3(
+            Random.Range(-2f, 2f), // Random X movement
+            0, // Stay on the map!
+            Random.Range(-2f, 2f)  // Random Z movement
+        );
+        
+        Vector3 newPosition = transform.position + randomMovement;
+        
+        agent.SetDestination(newPosition);
     }
 
     public void TakeDamage(int damage)
