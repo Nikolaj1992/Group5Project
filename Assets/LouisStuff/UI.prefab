@@ -170,8 +170,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 490, y: 155}
-  m_SizeDelta: {x: 300, y: 250}
+  m_AnchoredPosition: {x: 490, y: 150}
+  m_SizeDelta: {x: 300, y: 275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1921014717936909708
 CanvasRenderer:
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiText: {fileID: 6261789461784989074}
-  dummy: {fileID: 3431766122352944186, guid: c4892402351006049bfbb23760c01bb6, type: 3}
+  dummy: {fileID: 0}
 --- !u!1 &4144229262288921342
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +324,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: E - frozen debuff
+  m_text: 'E - frozen debuff
+
+    R - aflame debuff'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -571,8 +573,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -465, y: 255}
-  m_SizeDelta: {x: 350, y: 55}
+  m_AnchoredPosition: {x: -465, y: 235}
+  m_SizeDelta: {x: 350, y: 105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2454984920706191769
 CanvasRenderer:
@@ -785,9 +787,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Debuff: ?
+  m_text: 'Health: ?
 
     Speed: ?
+
+    Debuff: ?
 
     Debuffed: ?
 
