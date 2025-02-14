@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StatusEffectHandler : MonoBehaviour
 {
-    [SerializeField] private float baseSpeed;
+    [SerializeField] private float baseSpeed; // only set in inspector
     [HideInInspector] public float speed;
     [HideInInspector] public Dictionary<string, StatusEffect> statusEffects = new Dictionary<string, StatusEffect>();
     private HealthHandler healthHandler;
@@ -26,9 +26,7 @@ public class StatusEffectHandler : MonoBehaviour
         foreach (string key in keys)
         {
             StatusEffect statusEffect = statusEffects[key];
-
-            if (statusEffect.isActive)
-            {
+            
                 statusEffect.duration -= Time.deltaTime;
 
                 if (statusEffect.duration <= 0)
@@ -45,7 +43,6 @@ public class StatusEffectHandler : MonoBehaviour
                     speedModified = true;
                     speedModifier *= statusEffect.speedMultiplier;
                 }
-            }
         }
         speed = speedModified ? baseSpeed * speedModifier : baseSpeed;
     }
@@ -69,18 +66,6 @@ public class StatusEffectHandler : MonoBehaviour
             statusEffects[statusEffectName] = existingStatusEffect; // Update the dictionary
             Debug.Log($"{statusEffectName} refreshed with {existingStatusEffect.duration} seconds remaining.");
             }
-            if (existingStatusEffect.duration == 0)
-            {
-                statusEffects[statusEffectName] = new StatusEffect(statusEffectName, true, duration, stackable, affectsSpeed, speedMultiplier, dealsDamage, damageType, damageOverTime, damage, confuses, confusionType);
-                if (dealsDamage)
-                {
-                    if (damageOverTime)
-                    {
-                        healthHandler.DealDamageOverTime(damage, damageType, duration);
-                    }
-                }
-                Debug.Log($"Applied {statusEffectName} for {duration} seconds. (already existed)");
-            }
             else
             {
                 Debug.Log($"Status effect {statusEffectName} is already applied, and is not stackable.");
@@ -89,7 +74,7 @@ public class StatusEffectHandler : MonoBehaviour
         else
         {
             // Otherwise, add a new debuff
-            statusEffects[statusEffectName] = new StatusEffect(statusEffectName, true, duration, stackable, affectsSpeed, speedMultiplier, dealsDamage, damageType, damageOverTime, damage, confuses, confusionType);
+            statusEffects[statusEffectName] = new StatusEffect(statusEffectName, duration, stackable, affectsSpeed, speedMultiplier, dealsDamage, damageType, damageOverTime, damage, confuses, confusionType);
             if (dealsDamage)
             {
                 if (damageOverTime)

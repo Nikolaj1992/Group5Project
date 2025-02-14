@@ -21,11 +21,11 @@ public class UIDummyStats : MonoBehaviour
     {
         if (script.statusEffects.Count > 0)
         {
-            uiText.text = "Health: " + script2.health + "\n" + "Speed: " + script.speed + "\n" + "Debuff: " + script.statusEffects.First().Value.name + "\n" + "Debuffed: " + script.statusEffects.First().Value.isActive + "\n" + "Time: " + script.statusEffects.First().Value.duration;
+            uiText.text = "Health: " + script2.health + "\n" + "Speed: " + script.speed + "\n" + "Debuff: " + script.statusEffects.First().Value.name + "\n" + "Time: " + script.statusEffects.First().Value.duration;
         }
         else
         {
-            uiText.text = "Health: " + script2.health + "\n" + "Speed: " + script.speed + "\n" + "Debuff: " + "none" + "\n" + "Debuffed: " + false + "\n" + "Time: " + 0;
+            uiText.text = "Health: " + script2.health + "\n" + "Speed: " + script.speed + "\n" + "Debuff: " + "none" + "\n" + "Time: " + 0;
         }
     }
 }
