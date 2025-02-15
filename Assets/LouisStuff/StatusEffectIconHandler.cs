@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,27 +6,39 @@ using UnityEngine.UI;
 public class StatusEffectIconHandler : MonoBehaviour
 {
     private Camera playerCamera;
-    private float scaleFactor = 0.1f;
+    private float scaleFactor = 0.05f;
     private Canvas canvas;
     private float originalCanvasYPosition;
     private RawImage iconImage;
     private TextMeshProUGUI durationText;
-    private GameObject iconObject;
-    public StatusEffectIconHandler iconScript;
+    
+    private Transform target;
+    private Vector3 offset;
+    private bool showIcon = false;
+    private HealthHandler healthHandler;
     
     void Awake()
     {
         playerCamera = Camera.main;
         canvas = gameObject.GetComponentInChildren<Canvas>();
-        originalCanvasYPosition = canvas.transform.position.y;
+        originalCanvasYPosition = canvas.transform.localPosition.y;
         iconImage = gameObject.GetComponentInChildren<RawImage>();
         durationText = gameObject.GetComponentInChildren<TextMeshProUGUI>();
-        SetIcon("frozen");
-        UpdateDuration(9);
+        target = gameObject.transform.parent;
+        offset = new Vector3(0, target.transform.localScale.y, 0);
+        healthHandler = gameObject.GetComponentInParent<HealthHandler>();
     }
     
     void Update()
     {
+        if (!showIcon && canvas.enabled)
+        {
+            canvas.enabled = false;
+        }
+        else if (showIcon && !canvas.enabled)
+        {
+            canvas.enabled = true;
+        }
         if (playerCamera)
         { 
             gameObject.transform.rotation = playerCamera.transform.rotation;
@@ -40,37 +53,33 @@ public class StatusEffectIconHandler : MonoBehaviour
                 camHeight = 2.0f * distanceToCamera * Mathf.Tan(Mathf.Deg2Rad * (playerCamera.fieldOfView * 0.5f));
             }
             float scale = camHeight * scaleFactor;
-            if ((scale >= 4)) return;
+            if ((scale >= 3)) return;
             transform.localScale = new Vector3(scale, scale, scale);
-            canvas.transform.localPosition = new Vector3(0.0f, originalCanvasYPosition * (scale * scaleFactor), 0.0f);
+            gameObject.transform.position = target.position + offset;
+            canvas.transform.localPosition = new Vector3(0.0f, (originalCanvasYPosition * (scale * scaleFactor)) + originalCanvasYPosition, 0.0f);
         }
     }
 
-    public void CreateIcon(string iconName)
+    public void ShowIcon(string iconName)
     {
-        iconObject = Instantiate(Resources.Load("StatusEffectIcons/StatusEffectIcon3D")) as GameObject;
-        if (!(iconObject != null)) return;
-        iconScript = iconObject.GetComponent<StatusEffectIconHandler>();
-        iconScript.SetIcon(iconName);
-    }
-
-    public void SetIcon(string iconName)
-    {
+        if (showIcon) return; // makes it unable to respond to new calls if it is already active
+        showIcon = true;
         iconImage.texture = StatusEffect.icons[iconName];
+        StartCoroutine(CountDown(StatusEffect.premadeStatusEffects[iconName].duration));
     }
 
-    public void UpdateDuration(float seconds)
+    public void HideIcon()
     {
-        durationText.text = seconds + "s";
+        showIcon = false;
     }
 
-    public void UpdatePosition(Vector3 position)
+    private IEnumerator CountDown(float duration)
     {
-        transform.position = position;
-    }
-
-    public void DestroyIcon()
-    {
-        Destroy(gameObject);
+        for (int i = 0; i < duration; i++)
+        {
+            if (!healthHandler.alive) yield break;
+            durationText.text = (duration-i) + "s";
+            yield return new WaitForSeconds(1f);
+        }
     }
 }
