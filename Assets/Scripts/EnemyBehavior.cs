@@ -32,15 +32,21 @@ public class EnemyBehavior : MonoBehaviour
     
     // Bool for logging only
     private bool hasSeenPlayer = false;
+    
+    // status effect handler, needed here due to speed changes
+    private StatusEffectHandler statusEffectHandler;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        statusEffectHandler = GetComponent<StatusEffectHandler>();
     }
 
     private void Update()
     {
+        agent.speed = statusEffectHandler.speed;
+        
         // Check logic for playerInSightRange and playerInAttackRange
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, setIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, setIsPlayer);
