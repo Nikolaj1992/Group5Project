@@ -71,4 +71,22 @@ public class Enemy1AnimationHandler : MonoBehaviour
                 break;
         }
     }
+
+    public void Attack()
+    {
+        animator.SetTrigger("Attack");
+    }
+
+
+    public bool IsAttacking()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
