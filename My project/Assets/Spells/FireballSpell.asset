@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6dfc331c92bb42448c30579a53778f3, type: 3}
   m_Name: FireballSpell
   m_EditorClassIdentifier: 
-  spellName: 
-  spellIcon: {fileID: 0}
-  cooldownTime: 0
-  spellPrefab: {fileID: 0}
+  spellName: Fireball
+  spellIcon: {fileID: 21300000, guid: 2dde9231dead2d8409de0c63fe0fca0e, type: 3}
+  cooldownTime: 5
+  spellPrefab: {fileID: 6255235030689335068, guid: 3c5d008db914ba544af0e1653ce468bd, type: 3}

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,5 +36,17 @@ public class SpellCooldownManager : MonoBehaviour
         {
             spellTimers[spellName] = spellCooldowns[spellName];
         }
+    }
+
+    // Helper method to check if a spell is on cooldown and output its remaining time.
+    public bool IsSpellOnCooldown(string spellName, out float remainingCooldown)
+    {
+        if (spellTimers.ContainsKey(spellName))
+        {
+            remainingCooldown = spellTimers[spellName];
+            return true;
+        }
+        remainingCooldown = 0f;
+        return false;
     }
 }
