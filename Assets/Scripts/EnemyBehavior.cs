@@ -35,17 +35,42 @@ public class EnemyBehavior : MonoBehaviour
     
     // status effect handler, needed here due to speed changes
     private StatusEffectHandler statusEffectHandler;
+    // handles walking animations
+    private Enemy1AnimationHandler animationHandler1;
+    private GameObject model;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         statusEffectHandler = GetComponent<StatusEffectHandler>();
+        animationHandler1 = GetComponentInChildren<Enemy1AnimationHandler>();
+        model = transform.GetChild(0).gameObject;
     }
 
     private void Update()
     {
         agent.speed = statusEffectHandler.speed;
+        model.transform.localPosition = new Vector3(0f, -1f, 0f);
+        if (animationHandler1.IsAttacking())
+        {
+            model.transform.localRotation = Quaternion.Euler(0f, model.transform.localRotation.y + 0.3f, 0f); // makes the model rotate 30% while attacking
+            agent.speed = 0f;
+        }
+        else
+        {
+            model.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+
+        if (agent.velocity.magnitude > 0.3)
+        {
+            animationHandler1.SetDirection(Enemy1AnimationHandler.directionEnum.forward);
+        }
+        else if (agent.velocity.magnitude < 0.3)
+        {
+            animationHandler1.SetDirection(Enemy1AnimationHandler.directionEnum.none);
+        }
+        // Debug.Log("SPEED: " + agent.velocity.magnitude);
         
         // Check logic for playerInSightRange and playerInAttackRange
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, setIsPlayer);
@@ -117,12 +142,16 @@ public class EnemyBehavior : MonoBehaviour
     {
         // agent.SetDestination(transform.position);    // Stop moving when attacking. Enemy stands still.
         
-        transform.LookAt(player);
+        // transform.LookAt(player);
+        Vector3 direction = player.transform.position - transform.position; // Get direction to player
+        direction.y = 0; // Ignore vertical movement (only rotate around Y-axis)
+        transform.rotation = Quaternion.LookRotation(direction); // Create rotation only in horizontal plane
         
         if (!alreadyAttacked)
         {
             // We need attack code here, once we have the attack/attacks we want. Slash/shoot/etc.
             // Logs the attack type
+            animationHandler1.Attack();
             switch (attackType)
             {
                 case AttackType.Physical:

@@ -9,7 +9,6 @@ public class StatusEffectHandler : MonoBehaviour
     public Dictionary<string, StatusEffect> statusEffects = new Dictionary<string, StatusEffect>();
     private HealthHandler healthHandler;
     [HideInInspector] public StatusEffectIconHandler statusEffectIconHandler;
-    // [SerializeField] private GameObject statusEffectIconPrefab;
 
     void Awake()
     {
