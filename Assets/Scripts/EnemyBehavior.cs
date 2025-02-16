@@ -35,17 +35,30 @@ public class EnemyBehavior : MonoBehaviour
     
     // status effect handler, needed here due to speed changes
     private StatusEffectHandler statusEffectHandler;
+    // handles walking animations
+    private Enemy1AnimationHandler animationHandler1;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         statusEffectHandler = GetComponent<StatusEffectHandler>();
+        animationHandler1 = GetComponentInChildren<Enemy1AnimationHandler>();
     }
 
     private void Update()
     {
         agent.speed = statusEffectHandler.speed;
+
+        if (agent.velocity.magnitude > 0.3)
+        {
+            animationHandler1.SetDirection(Enemy1AnimationHandler.directionEnum.forward);
+        }
+        else if (agent.velocity.magnitude < 0.3)
+        {
+            animationHandler1.SetDirection(Enemy1AnimationHandler.directionEnum.none);
+        }
+        Debug.Log("SPEED: " + agent.velocity.magnitude);
         
         // Check logic for playerInSightRange and playerInAttackRange
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, setIsPlayer);
@@ -117,7 +130,10 @@ public class EnemyBehavior : MonoBehaviour
     {
         // agent.SetDestination(transform.position);    // Stop moving when attacking. Enemy stands still.
         
-        transform.LookAt(player);
+        // transform.LookAt(player);
+        Vector3 direction = player.transform.position - transform.position; // Get direction to player
+        direction.y = 0; // Ignore vertical movement (only rotate around Y-axis)
+        transform.rotation = Quaternion.LookRotation(direction); // Create rotation only in horizontal plane
         
         if (!alreadyAttacked)
         {
