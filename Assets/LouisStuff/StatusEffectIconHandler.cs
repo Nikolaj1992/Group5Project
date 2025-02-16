@@ -6,14 +6,12 @@ using UnityEngine.UI;
 public class StatusEffectIconHandler : MonoBehaviour
 {
     private Camera playerCamera;
-    private float scaleFactor = 0.05f;
+    private float scaleFactor = 0.025f;
     private Canvas canvas;
     private float originalCanvasYPosition;
     private RawImage iconImage;
     private TextMeshProUGUI durationText;
     
-    private Transform target;
-    private Vector3 offset;
     private bool showIcon = false;
     private HealthHandler healthHandler;
     
@@ -24,8 +22,6 @@ public class StatusEffectIconHandler : MonoBehaviour
         originalCanvasYPosition = canvas.transform.localPosition.y;
         iconImage = gameObject.GetComponentInChildren<RawImage>();
         durationText = gameObject.GetComponentInChildren<TextMeshProUGUI>();
-        target = gameObject.transform.parent;
-        offset = new Vector3(0, target.transform.localScale.y, 0);
         healthHandler = gameObject.GetComponentInParent<HealthHandler>();
     }
     
@@ -55,7 +51,6 @@ public class StatusEffectIconHandler : MonoBehaviour
             float scale = camHeight * scaleFactor;
             if ((scale >= 3)) return;
             transform.localScale = new Vector3(scale, scale, scale);
-            gameObject.transform.position = target.position + offset;
             canvas.transform.localPosition = new Vector3(0.0f, (originalCanvasYPosition * (scale * scaleFactor)) + originalCanvasYPosition, 0.0f);
         }
     }

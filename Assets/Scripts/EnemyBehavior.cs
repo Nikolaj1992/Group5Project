@@ -55,6 +55,7 @@ public class EnemyBehavior : MonoBehaviour
         if (animationHandler1.IsAttacking())
         {
             model.transform.localRotation = Quaternion.Euler(0f, model.transform.localRotation.y + 0.3f, 0f); // makes the model rotate 30% while attacking
+            agent.speed = 0f;
         }
         else
         {
