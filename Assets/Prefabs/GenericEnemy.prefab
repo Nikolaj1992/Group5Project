@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7515978110978231073}
   - component: {fileID: 7744637434353549260}
   - component: {fileID: 7675465987030077652}
+  - component: {fileID: 2990689479463716794}
   m_Layer: 0
   m_Name: GenericEnemy
   m_TagString: Untagged
@@ -213,6 +214,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85da82e9bdcfe394599aab483fe2eda8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2990689479463716794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3544011149161072303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c5e7c07f35a9c429a8c9ecdac951a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thunderStrikePrefab: {fileID: 8690049599401577628, guid: 24ec2fb0e8c631943a03fb768ae7b810, type: 3}
+  playerCamera: {fileID: 5066056848955781665, guid: b7eae9b5810504a4490b902372d94613, type: 3}
 --- !u!1001 &629842899490569050
 PrefabInstance:
   m_ObjectHideFlags: 0

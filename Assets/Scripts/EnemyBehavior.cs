@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class EnemyBehavior : MonoBehaviour
 {
     public NavMeshAgent agent;
-    public Transform player;
+    public GameObject player;
     public LayerMask setIsGround, setIsPlayer;  // Remember to give the player and ground the correct layers in Unity!
     
     public float health;    // Set health in the nav mesh agent
@@ -38,14 +38,17 @@ public class EnemyBehavior : MonoBehaviour
     // handles walking animations
     private Enemy1AnimationHandler animationHandler1;
     private GameObject model;
+    // lightning attack
+    private LightningSpawner lightningSpawner;
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
         statusEffectHandler = GetComponent<StatusEffectHandler>();
         animationHandler1 = GetComponentInChildren<Enemy1AnimationHandler>();
         model = transform.GetChild(0).gameObject;
+        lightningSpawner = GetComponent<LightningSpawner>();
     }
 
     private void Update()
@@ -135,7 +138,7 @@ public class EnemyBehavior : MonoBehaviour
     
     private void Chasing()
     {
-        agent.SetDestination(player.position);
+        agent.SetDestination(player.transform.position);
     }
     
     private void Attacking()
@@ -152,6 +155,7 @@ public class EnemyBehavior : MonoBehaviour
             // We need attack code here, once we have the attack/attacks we want. Slash/shoot/etc.
             // Logs the attack type
             animationHandler1.Attack();
+            lightningSpawner.CastLightning(player.transform.position, player, "aflame", 20, HealthHandler.DamageType.Elemental);
             switch (attackType)
             {
                 case AttackType.Physical:

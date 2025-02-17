@@ -85,6 +85,10 @@ GameObject:
   - component: {fileID: 8034023350072734894}
   - component: {fileID: 379943945}
   - component: {fileID: 5276139772357399733}
+  - component: {fileID: 288606318830925184}
+  - component: {fileID: 5581114001798032691}
+  - component: {fileID: 6130469702039808794}
+  - component: {fileID: 6051133950433204649}
   m_Layer: 3
   m_Name: PlayerFree
   m_TagString: Player
@@ -202,6 +206,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c321cef114002e4285fc3158939f3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &288606318830925184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034023350072734895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e0a0fa2b75ab24e89c8fb51c15eee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 500
+  alive: 0
+  generalDamageResistance: 0
+  impactResistance: 0
+  elementalResistance: 0
+--- !u!114 &5581114001798032691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034023350072734895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bfd443fa36143345bf6ddbc6bb95207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseSpeed: 0
+  speed: 0
+  statusEffectIconHandler: {fileID: 0}
+--- !u!114 &6130469702039808794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034023350072734895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e0a0fa2b75ab24e89c8fb51c15eee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 500
+  alive: 0
+  generalDamageResistance: 0
+  impactResistance: 0
+  elementalResistance: 0
+--- !u!114 &6051133950433204649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034023350072734895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bfd443fa36143345bf6ddbc6bb95207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseSpeed: 0
+  speed: 0
+  statusEffectIconHandler: {fileID: 0}
 --- !u!1001 &1039257265535126874
 PrefabInstance:
   m_ObjectHideFlags: 0

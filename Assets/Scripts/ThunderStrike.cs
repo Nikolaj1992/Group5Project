@@ -34,7 +34,7 @@ public class ThunderStrike : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             // If the ray hits something, pass the hit point to LightningSpawner
-            lightningSpawner.CastLightning(hit.point, "aflame", 25, HealthHandler.DamageType.Piercing);
+            lightningSpawner.CastLightning("aflame", 25, HealthHandler.DamageType.Piercing);
         }
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1f);
         player.layer = originalLayer;

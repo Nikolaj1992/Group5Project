@@ -442,22 +442,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1532179697548265690, guid: cc9f654c52d1e8d4783187aedeb3720a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2291830270725699051, guid: cc9f654c52d1e8d4783187aedeb3720a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2291830270725699051, guid: cc9f654c52d1e8d4783187aedeb3720a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2291830270725699051, guid: cc9f654c52d1e8d4783187aedeb3720a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2291830270725699051, guid: cc9f654c52d1e8d4783187aedeb3720a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -498,33 +482,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2779554005678870356, guid: cc9f654c52d1e8d4783187aedeb3720a, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3544011149161072303, guid: cc9f654c52d1e8d4783187aedeb3720a, type: 3}
       propertyPath: m_Name
       value: GenericEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5837496184599211310, guid: cc9f654c52d1e8d4783187aedeb3720a, type: 3}
-      propertyPath: sightRange
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5837496184599211310, guid: cc9f654c52d1e8d4783187aedeb3720a, type: 3}
-      propertyPath: attackRange
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6521811843324751955, guid: cc9f654c52d1e8d4783187aedeb3720a, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7826770551649537740, guid: cc9f654c52d1e8d4783187aedeb3720a, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7843540761062780822, guid: cc9f654c52d1e8d4783187aedeb3720a, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
