@@ -194,8 +194,8 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 20
   timeBetweenAttacks: 2
-  sightRange: 40
-  attackRange: 25
+  sightRange: 60
+  attackRange: 45
   playerInSightRange: 0
   playerInAttackRange: 0
   patrolDelay: 9
