@@ -155,7 +155,7 @@ public class EnemyBehavior : MonoBehaviour
             // We need attack code here, once we have the attack/attacks we want. Slash/shoot/etc.
             // Logs the attack type
             animationHandler1.Attack();
-            lightningSpawner.CastLightning(player.transform.position, player, "aflame", 20, HealthHandler.DamageType.Elemental);
+            // lightningSpawner.CastLightning(player.transform.position, player, "aflame", 20, HealthHandler.DamageType.Elemental);
             switch (attackType)
             {
                 case AttackType.Physical:
