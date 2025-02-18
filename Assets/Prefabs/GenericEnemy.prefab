@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1301148621777600176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5781229985423680226}
+  m_Layer: 0
+  m_Name: ProjectileHandMuzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5781229985423680226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301148621777600176}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0.075}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1227241953587102866}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3544011149161072303
 GameObject:
   m_ObjectHideFlags: 0
@@ -16,7 +47,6 @@ GameObject:
   - component: {fileID: 5837496184599211310}
   - component: {fileID: 7515978110978231073}
   - component: {fileID: 7744637434353549260}
-  - component: {fileID: 7675465987030077652}
   - component: {fileID: 2990689479463716794}
   m_Layer: 0
   m_Name: GenericEnemy
@@ -153,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 460661883031002852}
-  player: {fileID: 8031296275084131563, guid: b736166d497cf884e8c2edf00909a8af, type: 3}
+  player: {fileID: 0}
   setIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -164,8 +194,8 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 20
   timeBetweenAttacks: 2
-  sightRange: 10
-  attackRange: 7
+  sightRange: 40
+  attackRange: 25
   playerInSightRange: 0
   playerInAttackRange: 0
   patrolDelay: 9
@@ -202,18 +232,6 @@ MonoBehaviour:
   baseSpeed: 3
   speed: 0
   statusEffectIconHandler: {fileID: 0}
---- !u!114 &7675465987030077652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3544011149161072303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85da82e9bdcfe394599aab483fe2eda8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2990689479463716794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,17 +298,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeletonzombie T Avelange@T-Pose
       objectReference: {fileID: 0}
+    - target: {fileID: 1852576806548013000, guid: cfa468fa8d0d2c249a3fdbd1d2951607, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1852576806548013000, guid: cfa468fa8d0d2c249a3fdbd1d2951607, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.424
+      objectReference: {fileID: 0}
+    - target: {fileID: 1852576806548013000, guid: cfa468fa8d0d2c249a3fdbd1d2951607, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.104
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: cfa468fa8d0d2c249a3fdbd1d2951607, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 9506381ab9a8c2b41b2a4b74d6d808e1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1852576806548013000, guid: cfa468fa8d0d2c249a3fdbd1d2951607, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5781229985423680226}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cfa468fa8d0d2c249a3fdbd1d2951607, type: 3}
       insertIndex: -1
       addedObject: {fileID: 602120778646351004}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cfa468fa8d0d2c249a3fdbd1d2951607, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5269223728473041151}
   m_SourcePrefab: {fileID: 100100000, guid: cfa468fa8d0d2c249a3fdbd1d2951607, type: 3}
 --- !u!1 &323360968075822603 stripped
 GameObject:
@@ -319,9 +355,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5269223728473041151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323360968075822603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85da82e9bdcfe394599aab483fe2eda8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handMuzzle: {fileID: 0}
+  projectilePrefab: {fileID: 6703596100644422651, guid: a1bb4e20b86766449834fd1e663c59c8, type: 3}
 --- !u!4 &1096379921482292401 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cfa468fa8d0d2c249a3fdbd1d2951607, type: 3}
+  m_PrefabInstance: {fileID: 629842899490569050}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1227241953587102866 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: cfa468fa8d0d2c249a3fdbd1d2951607, type: 3}
   m_PrefabInstance: {fileID: 629842899490569050}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6424402423575698107
